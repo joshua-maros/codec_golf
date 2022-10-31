@@ -432,12 +432,13 @@ while position < len(bitstream) * 8:
             do_not_decode[ch] = no_residue[channel_index]
             ch += 1
         residue_config = residues[submap['residue']]
+        result_length = block_size // 2
         classwords_per_codeword = codebook_configs[residue_config['classbook']][2]
         residue_classifications = residue_config['num_classifications']
         residue_books = residue_config['books']
         num_to_read = residue_config['end'] - residue_config['begin']
         partitions_to_read = num_to_read // residue_config['partition_size']
-        result = [[0.0 for _ in range(residue_config['partition_size'])] for _ in range(ch)]
+        result = [[0.0 for _ in range(result_length)] for _ in range(ch)]
         for pass_index in range(8):
             num_partitions = 0
             while num_partitions < partitions_to_read:
