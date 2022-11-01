@@ -4,7 +4,7 @@ import math
 import struct
 import itertools
 
-bitstream = open('/home/josh/Documents/Sine.ogg', 'rb').read()
+bitstream = open('Sine.ogg', 'rb').read()
 position = 0
 
 def read_bit():
@@ -171,8 +171,8 @@ for index in range(codebook_count):
     assert read(24) == 0x564342
     dims = read(16)
     num_entries = read(24)
-    ordered = read(1) > 0
-    sparse = read(1) > 0
+    ordered = read_bit()
+    sparse = read_bit()
     assert not ordered
     lengths = []
     for _ in range(num_entries):
